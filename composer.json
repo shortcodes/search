@@ -1,0 +1,29 @@
+{
+  "name": "shortcodes/search",
+  "description": "Useful traits for different methods to search data (elasticsearch ,eloquent)",
+  "type": "package",
+  "license": "mit",
+  "authors": [
+    {
+      "name": "Roman Szymanski",
+      "email": "roman.szymanski@shortcodes.pl"
+    }
+  ],
+  "minimum-stability": "stable",
+  "require": {
+    "php": ">=7.0.0",
+    "elasticsearch/elasticsearch": "^6.1"
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Shortcodes\\Search\\ElasticsearchProvider"
+      ]
+    }
+  },
+  "autoload": {
+    "psr-4": {
+      "Shortcodes\\Search\\": "src/"
+    }
+  }
+}
