@@ -31,9 +31,15 @@ To search in elasticsearch there is a need to use method searchParameters in mod
 
 Every eloquent type search model need to use **Searchable** trait and implement searchParameters method 
 
-    public function searchParameters($query,$request) : array
+    public function searchParameters($query,$request)
     {
         //must return queryBuilder class
         
         return $query;
     }
+
+# manually reindex classes that uses trait
+
+Every eloquent type search model need to use **Searchable** trait and implement searchParameters method 
+
+    php artisan search:reindex
