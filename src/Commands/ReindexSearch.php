@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Console\Commands;
+namespace Shortcodes\Search\Commands;
 
 use Elasticsearch\Client;
 use Illuminate\Console\Command;
