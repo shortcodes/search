@@ -72,7 +72,7 @@ trait Elasticable
             });
 
             return [
-                'data' => self::whereIn('id', $filteredItems->pluck('id'))->orderByRaw('FIELD (id, '.$filteredItems->pluck('id')->implode(',').')')->get(),
+                'data' => $filteredItems->isNotEmpty()?self::whereIn('id', $filteredItems->pluck('id'))->orderByRaw('FIELD (id, '.$filteredItems->pluck('id')->implode(',').')')->get():collect([]),
                 'meta' => [
                     'total' => (int)$items['hits']['total'],
                     'pages' => (int)ceil($items['hits']['total'] / $length),
