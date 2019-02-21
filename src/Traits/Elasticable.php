@@ -21,7 +21,7 @@ trait Elasticable
         return 'default';
     }
 
-    public function reindex()
+    private function reindex()
     {
         $client = resolve('ElasticsearchClient');
 
