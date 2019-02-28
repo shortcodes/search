@@ -19,6 +19,7 @@ class ElasticObserver
             'index' => $model->getElasticIndex(),
             'type' => $model->getElasticType(),
             'id' => $model->id,
+            'refresh' => 'wait_for',
             'body' => $model->getElasticStructure(),
         ]);
     }
@@ -28,6 +29,7 @@ class ElasticObserver
         $this->elasticsearch->delete([
             'index' => $model->getElasticIndex(),
             'type' => $model->getElasticType(),
+            'refresh' => 'wait_for',
             'id' => $model->id,
         ]);
     }
