@@ -40,6 +40,16 @@ class ReindexSearch extends Command
                     'body' => [
                         'mappings' => [
                             $newModel->getElasticType() => $newModel->getElasticMapping()
+                        ],
+                        'settings' => [
+                            'analysis' => [
+                                'normalizer' => [
+                                    'keyword_lowercase' =>[
+                                        'type' => 'custom',
+                                        'filter' => ['lowercase']
+                                    ]
+                                ]
+                            ]
                         ]
                     ]
                 ];
@@ -75,7 +85,7 @@ class ReindexSearch extends Command
                 continue;
             }
 
-            $filename = $path . '\\' . $result;
+            $filename = $path . '/' . $result;
 
             if (is_dir($filename) && $result === "Models") {
                 $out = array_merge($out, $this->getModels($filename));
@@ -84,9 +94,8 @@ class ReindexSearch extends Command
                 continue;
             }
 
-            $appPhraseIndex = strpos(substr($filename, 0, -4), '\\app\\');
-
-            $class = str_replace('\\app\\', '\\App\\', substr($filename, $appPhraseIndex, -4));
+            $appPhraseIndex = strpos(substr($filename, 0, -4), '/app/');
+            $class = str_replace('/app/', '\\App\\', substr($filename, $appPhraseIndex, -4));
             if (in_array(Elasticable::class, class_uses($class))) {
                 $out[] = $class;
             }
