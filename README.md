@@ -1,3 +1,5 @@
+# DEPRECATED
+
 # search
 Useful traits for different methods to search data (elasticsearch ,eloquent)
 
