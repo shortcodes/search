@@ -99,9 +99,9 @@ trait Elasticable
             ];
         }
 
-        if (($sortBy = $request->get('sort_by')) && ($sortDirection = $request->get('sort_direction'))) {
-            $search['sort'][][$sortBy]['order'] = $sortDirection;
-        }
+       if (($sortBy = $request->get('sort_by')) && ($sortDirection = $request->get('sort_direction'))) {
+            $search['sort'][][$sortBy] = ['order'=> $sortDirection, 'missing'=>$sortDirection==='asc'?'_first':'_last'];
+       }
 
         if ($request->get('active') !== null) {
             $search['query']['bool']['must'][] = [
